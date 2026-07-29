@@ -1,5 +1,5 @@
 {
-  "updated_at": "29.07.2026 14:05",
+  "updated_at": "29.07.2026 14:35",
   "events": [
     {
       "date": "2026-08-03",
@@ -78,8 +78,8 @@
     {
       "task": "Nasdílet SMR CZ/SK playlisty na story",
       "assignee": "Filip",
-      "created": "",
-      "created_display": "",
+      "created": "2026-07-29",
+      "created_display": "29.07.2026",
       "deadline": "2026-07-30",
       "deadline_display": "30.07.2026",
       "note": ""
@@ -87,8 +87,8 @@
     {
       "task": "Vyexportovat a poslat linky Carnivore",
       "assignee": "Pavel",
-      "created": "",
-      "created_display": "",
+      "created": "2026-07-29",
+      "created_display": "29.07.2026",
       "deadline": "2026-08-02",
       "deadline_display": "02.08.2026",
       "note": ""
@@ -96,8 +96,8 @@
     {
       "task": "Vyexportovat a poslat linky The Drain",
       "assignee": "Pavel",
-      "created": "",
-      "created_display": "",
+      "created": "2026-07-29",
+      "created_display": "29.07.2026",
       "deadline": "2026-08-02",
       "deadline_display": "02.08.2026",
       "note": ""
