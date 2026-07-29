@@ -23,9 +23,6 @@ PRAGUE_TZ = ZoneInfo("Europe/Prague")
 
 
 def get_csv_url(sheet_name: str) -> str:
-    """
-    Vytvoří CSV endpoint pro konkrétní publikovanou záložku Google Sheets.
-    """
     return (
         f"{PUBLISHED_SHEET_BASE_URL}"
         f"?output=csv&sheet={quote(sheet_name)}"
@@ -33,10 +30,6 @@ def get_csv_url(sheet_name: str) -> str:
 
 
 def download_csv(sheet_name: str) -> list[dict[str, str]]:
-    """
-    Stáhne konkrétní list jako CSV a vrátí jednotlivé řádky
-    jako slovníky podle názvů sloupců.
-    """
     url = get_csv_url(sheet_name)
 
     print(f"Načítám list: {sheet_name}")
@@ -72,7 +65,6 @@ def download_csv(sheet_name: str) -> list[dict[str, str]]:
 
             row[clean_key] = clean_value
 
-        # Úplně prázdné řádky ignorujeme.
         if any(row.values()):
             rows.append(row)
 
@@ -82,14 +74,6 @@ def download_csv(sheet_name: str) -> list[dict[str, str]]:
 
 
 def parse_date(value: str) -> datetime | None:
-    """
-    Zkusí převést datum z Google Sheets na datetime.
-
-    Podporujeme například:
-    03.08.2026
-    03. 08. 2026
-    2026-08-03
-    """
     value = value.strip()
 
     if not value:
@@ -112,9 +96,6 @@ def parse_date(value: str) -> datetime | None:
 
 
 def iso_date(value: str) -> str:
-    """
-    Vrátí datum ve formátu YYYY-MM-DD pro JavaScript.
-    """
     parsed = parse_date(value)
 
     if parsed is None:
@@ -124,9 +105,6 @@ def iso_date(value: str) -> str:
 
 
 def display_date(value: str) -> str:
-    """
-    Vrátí datum ve formátu DD.MM.YYYY.
-    """
     parsed = parse_date(value)
 
     if parsed is None:
@@ -139,12 +117,6 @@ def get_value(
     row: dict[str, str],
     *possible_names: str,
 ) -> str:
-    """
-    Najde hodnotu podle některého z očekávaných názvů sloupce.
-
-    Díky tomu drobná změna velikosti písmen nebo mezery
-    nerozbije načítání.
-    """
     normalized_row = {
         key.casefold().strip(): value.strip()
         for key, value in row.items()
@@ -169,7 +141,6 @@ def build_events(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         pickup = get_value(row, "Vyzvednutí Skalka")
         note = get_value(row, "Poznámka")
 
-        # Bez data nebo názvu události řádek ignorujeme.
         if not date_raw or not event:
             continue
 
@@ -193,7 +164,6 @@ def build_events(rows: list[dict[str, str]]) -> list[dict[str, str]]:
             }
         )
 
-    # Chronologicky od nejbližšího data k nejvzdálenějšímu.
     events.sort(key=lambda item: item["date"])
 
     return events
@@ -209,7 +179,6 @@ def build_tasks(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         deadline_raw = get_value(row, "Termín splnění")
         note = get_value(row, "Poznámka")
 
-        # Úkol a řešitel jsou jediná povinná pole.
         if not task or not assignee:
             continue
 
@@ -217,31 +186,26 @@ def build_tasks(rows: list[dict[str, str]]) -> list[dict[str, str]]:
             {
                 "task": task,
                 "assignee": assignee,
-
                 "created": (
                     iso_date(created_raw)
                     if created_raw
                     else ""
                 ),
-
                 "created_display": (
                     display_date(created_raw)
                     if created_raw
                     else ""
                 ),
-
                 "deadline": (
                     iso_date(deadline_raw)
                     if deadline_raw
                     else ""
                 ),
-
                 "deadline_display": (
                     display_date(deadline_raw)
                     if deadline_raw
                     else ""
                 ),
-
                 "note": note,
             }
         )
@@ -250,9 +214,6 @@ def build_tasks(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def get_updated_at() -> str:
-    """
-    Aktuální čas v Praze včetně automatického CET / CEST.
-    """
     now = datetime.now(PRAGUE_TZ)
 
     return now.strftime("%d.%m.%Y %H:%M")
@@ -263,6 +224,21 @@ def main() -> None:
 
     terminy_rows = download_csv(TERMINY_SHEET)
     task_rows = download_csv(TASKS_SHEET)
+
+    print()
+    print("=== DEBUG: Aktuální úkoly ===")
+
+    if task_rows:
+        print("Názvy sloupců:")
+        print(list(task_rows[0].keys()))
+
+        print("První řádek:")
+        print(task_rows[0])
+    else:
+        print("List neobsahuje žádná data.")
+
+    print("=== KONEC DEBUG ===")
+    print()
 
     events = build_events(terminy_rows)
     tasks = build_tasks(task_rows)
@@ -288,7 +264,6 @@ def main() -> None:
         encoding="utf-8",
     )
 
-    print()
     print(f"Termíny: {len(events)}")
     print(f"Úkoly: {len(tasks)}")
     print(f"Výstup: {OUTPUT_FILE}")
