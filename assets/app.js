@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", init);
 ========================================================= */
 
 async function init() {
+    initializeCollapsibleSections();
+
     try {
         const response = await fetch(DATA_URL, {
             cache: "no-store"
@@ -44,6 +46,95 @@ async function init() {
     } catch (error) {
         console.error("Nepodařilo se načíst dashboard:", error);
         showLoadError();
+    }
+}
+
+
+/* =========================================================
+   SBALOVÁNÍ / ROZBALOVÁNÍ SEKCE
+========================================================= */
+
+function initializeCollapsibleSections() {
+    setupCollapsibleSection({
+        sectionId: "schedules-section",
+        toggleId: "schedules-toggle",
+        contentId: "schedules-content"
+    });
+
+    setupCollapsibleSection({
+        sectionId: "tasks-section",
+        toggleId: "tasks-toggle",
+        contentId: "tasks-content"
+    });
+}
+
+
+function setupCollapsibleSection({
+    sectionId,
+    toggleId,
+    contentId
+}) {
+    const section = document.getElementById(sectionId);
+    const toggle = document.getElementById(toggleId);
+    const content = document.getElementById(contentId);
+
+    if (!section || !toggle || !content) {
+        return;
+    }
+
+    /*
+        Výchozí stav je vždy rozbalený.
+    */
+    setSectionExpanded({
+        section,
+        toggle,
+        content,
+        expanded: true
+    });
+
+    toggle.addEventListener("click", () => {
+        const currentlyExpanded =
+            toggle.getAttribute("aria-expanded") === "true";
+
+        setSectionExpanded({
+            section,
+            toggle,
+            content,
+            expanded: !currentlyExpanded
+        });
+    });
+}
+
+
+function setSectionExpanded({
+    section,
+    toggle,
+    content,
+    expanded
+}) {
+    const icon = toggle.querySelector(".section-toggle-icon");
+    const label = toggle.querySelector(".section-toggle-label");
+
+    toggle.setAttribute(
+        "aria-expanded",
+        expanded ? "true" : "false"
+    );
+
+    content.hidden = !expanded;
+
+    section.classList.toggle(
+        "is-collapsed",
+        !expanded
+    );
+
+    if (icon) {
+        icon.textContent = expanded ? "−" : "+";
+    }
+
+    if (label) {
+        label.textContent = expanded
+            ? "Sbalit"
+            : "Rozbalit";
     }
 }
 
@@ -72,7 +163,8 @@ function validateData(data) {
 ========================================================= */
 
 function renderLastUpdate(updatedAt) {
-    const element = document.getElementById("last-update-value");
+    const element =
+        document.getElementById("last-update-value");
 
     if (!element) {
         return;
@@ -97,6 +189,10 @@ function initializeFilters(events) {
 
     const yearFilterContainer =
         document.getElementById("year-filters");
+
+    if (!eventFilterContainer || !yearFilterContainer) {
+        return;
+    }
 
     eventFilterContainer.innerHTML = "";
     yearFilterContainer.innerHTML = "";
@@ -134,8 +230,6 @@ function initializeFilters(events) {
 
     /*
         ROKY
-
-        Roky se automaticky zjistí podle dat.
     */
 
     const years = [
@@ -176,12 +270,14 @@ function createFilterPill({
     checked,
     onChange
 }) {
-    const wrapper = document.createElement("label");
+    const wrapper =
+        document.createElement("label");
 
     wrapper.className = "filter-pill";
 
 
-    const input = document.createElement("input");
+    const input =
+        document.createElement("input");
 
     input.type = "checkbox";
     input.value = value;
@@ -193,7 +289,8 @@ function createFilterPill({
     });
 
 
-    const text = document.createElement("span");
+    const text =
+        document.createElement("span");
 
     text.textContent = label;
 
@@ -216,26 +313,9 @@ function renderSchedules() {
     const emptyState =
         document.getElementById("schedule-empty");
 
-
-    if (!state.data) {
+    if (!container || !emptyState || !state.data) {
         return;
     }
-
-
-    /*
-        Nejprve data převedeme do jednotného formátu.
-
-        Řazení:
-        nejbližší termín -> nejvzdálenější termín.
-
-        Tedy například:
-
-        03.08.2026
-        12.08.2026
-        17.08.2026
-        ...
-        11.11.2027
-    */
 
     const events = state.data.events
         .map(normalizeEvent)
@@ -245,16 +325,13 @@ function renderSchedules() {
         });
 
 
-    /*
-        Aplikujeme zvolené filtry.
-    */
-
-    const filteredEvents = events.filter((event) => {
-        return (
-            state.selectedEventTypes.has(event.type) &&
-            state.selectedYears.has(event.year)
-        );
-    });
+    const filteredEvents =
+        events.filter((event) => {
+            return (
+                state.selectedEventTypes.has(event.type) &&
+                state.selectedYears.has(event.year)
+            );
+        });
 
 
     container.innerHTML = "";
@@ -269,12 +346,8 @@ function renderSchedules() {
     emptyState.hidden = true;
 
 
-    /*
-        Termíny zůstávají chronologické,
-        ale vizuálně je rozdělíme podle roku.
-    */
-
-    const grouped = groupByYear(filteredEvents);
+    const grouped =
+        groupByYear(filteredEvents);
 
 
     [...grouped.keys()]
@@ -284,7 +357,8 @@ function renderSchedules() {
             const yearSection =
                 document.createElement("section");
 
-            yearSection.className = "schedule-year";
+            yearSection.className =
+                "schedule-year";
 
 
             const yearHeading =
@@ -303,19 +377,15 @@ function renderSchedules() {
                 "schedule-year-items";
 
 
-            /*
-                I uvnitř roku zachováme explicitně
-                chronologické pořadí.
-            */
-
-            const yearEvents = grouped
-                .get(year)
-                .sort((a, b) => {
-                    return (
-                        a.date.getTime() -
-                        b.date.getTime()
-                    );
-                });
+            const yearEvents =
+                grouped
+                    .get(year)
+                    .sort((a, b) => {
+                        return (
+                            a.date.getTime() -
+                            b.date.getTime()
+                        );
+                    });
 
 
             yearEvents.forEach((event) => {
@@ -341,54 +411,25 @@ function normalizeEvent(rawEvent) {
     const eventName =
         cleanString(rawEvent.event);
 
-
-    /*
-        Typ události poznáváme podle textu.
-
-        Například:
-
-        Zkouška
-        Zkouška (?)
-
-        => zkouska
-
-        Kuba studio
-        Kuba studio (?)
-
-        => studio
-    */
-
     const type =
         detectEventType(eventName);
-
-
-    /*
-        "(?)" znamená předběžný termín.
-    */
 
     const tentative =
         /\(\?\)/.test(eventName);
 
-
-    /*
-        Na webu samotné "(?)" nezobrazujeme.
-    */
-
-    const cleanEventName = eventName
-        .replace(/\s*\(\?\)\s*/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-
+    const cleanEventName =
+        eventName
+            .replace(/\s*\(\?\)\s*/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
 
     const date =
         parseDate(rawEvent.date);
-
 
     const year =
         date
             ? date.getFullYear()
             : null;
-
 
     return {
         date,
@@ -429,52 +470,43 @@ function createScheduleCard(event) {
             "schedule-card-template"
         );
 
-
     const fragment =
         template.content.cloneNode(true);
-
 
     const card =
         fragment.querySelector(
             ".schedule-card"
         );
 
-
     const dateValue =
         fragment.querySelector(
             ".schedule-date-value"
         );
-
 
     const dayValue =
         fragment.querySelector(
             ".schedule-day"
         );
 
-
     const eventValue =
         fragment.querySelector(
             ".schedule-event"
         );
-
 
     const tentativeBadge =
         fragment.querySelector(
             ".tentative-badge"
         );
 
-
     const noteElement =
         fragment.querySelector(
             ".schedule-note"
         );
 
-
     const pickupInfo =
         fragment.querySelector(
             ".pickup-info"
         );
-
 
     const pickupValue =
         fragment.querySelector(
@@ -485,22 +517,15 @@ function createScheduleCard(event) {
     dateValue.textContent =
         event.dateDisplay;
 
-
     dayValue.textContent =
         event.day;
-
 
     eventValue.textContent =
         event.event || "Událost";
 
-
     card.dataset.eventType =
         event.type;
 
-
-    /*
-        PŘEDBĚŽNÝ TERMÍN
-    */
 
     if (event.tentative) {
         card.classList.add(
@@ -512,10 +537,6 @@ function createScheduleCard(event) {
     }
 
 
-    /*
-        POZNÁMKA
-    */
-
     if (event.note) {
         noteElement.textContent =
             event.note;
@@ -524,15 +545,6 @@ function createScheduleCard(event) {
             false;
     }
 
-
-    /*
-        VYZVEDNUTÍ NA SKALCE
-
-        Zobrazuje se pouze:
-
-        - u zkoušky
-        - když je hodnota vyplněna
-    */
 
     if (
         event.type === "zkouska" &&
@@ -558,9 +570,7 @@ function detectEventType(eventName) {
     const normalized =
         normalizeText(eventName);
 
-
     for (const type of EVENT_TYPES) {
-
         const matches =
             type.keywords.some(
                 (keyword) =>
@@ -569,12 +579,10 @@ function detectEventType(eventName) {
                     )
             );
 
-
         if (matches) {
             return type.key;
         }
     }
-
 
     return "other";
 }
@@ -588,9 +596,7 @@ function groupByYear(events) {
     const grouped =
         new Map();
 
-
     events.forEach((event) => {
-
         if (!grouped.has(event.year)) {
             grouped.set(
                 event.year,
@@ -598,12 +604,10 @@ function groupByYear(events) {
             );
         }
 
-
         grouped
             .get(event.year)
             .push(event);
     });
-
 
     return grouped;
 }
@@ -612,7 +616,6 @@ function groupByYear(events) {
 function getEventYear(event) {
     const date =
         parseDate(event.date);
-
 
     return date
         ? date.getFullYear()
@@ -630,23 +633,26 @@ function renderTasks(rawTasks) {
             "tasks-container"
         );
 
-
     const emptyState =
         document.getElementById(
             "tasks-empty"
         );
 
+    if (!container || !emptyState) {
+        return;
+    }
 
     container.innerHTML = "";
 
 
-    const tasks = rawTasks
-        .map(normalizeTask)
-        .filter(
-            (task) =>
-                task.title &&
-                task.assignee
-        );
+    const tasks =
+        rawTasks
+            .map(normalizeTask)
+            .filter(
+                (task) =>
+                    task.title &&
+                    task.assignee
+            );
 
 
     if (tasks.length === 0) {
@@ -661,10 +667,6 @@ function renderTasks(rawTasks) {
     const grouped =
         groupTasksByAssignee(tasks);
 
-
-    /*
-        Řešitelé jsou abecedně.
-    */
 
     [...grouped.entries()]
         .sort(
@@ -709,12 +711,10 @@ function normalizeTask(
             rawTask.created
         );
 
-
     const deadlineDate =
         parseDate(
             rawTask.deadline
         );
-
 
     return {
         title:
@@ -770,9 +770,7 @@ function groupTasksByAssignee(tasks) {
     const grouped =
         new Map();
 
-
     tasks.forEach((task) => {
-
         if (
             !grouped.has(
                 task.assignee
@@ -784,12 +782,10 @@ function groupTasksByAssignee(tasks) {
             );
         }
 
-
         grouped
             .get(task.assignee)
             .push(task);
     });
-
 
     return grouped;
 }
@@ -808,7 +804,6 @@ function sortTasks(tasks) {
                     a.deadlineDate
                 );
 
-
             const bHasDeadline =
                 Boolean(
                     b.deadlineDate
@@ -816,11 +811,8 @@ function sortTasks(tasks) {
 
 
             /*
-                1.
-                Oba mají termín splnění.
-
-                Nejbližší deadline
-                bude nejvýše.
+                1. Oba mají termín splnění.
+                Nejbližší deadline je nahoře.
             */
 
             if (
@@ -831,18 +823,11 @@ function sortTasks(tasks) {
                     a.deadlineDate.getTime() -
                     b.deadlineDate.getTime();
 
-
                 if (
                     deadlineDifference !== 0
                 ) {
                     return deadlineDifference;
                 }
-
-
-                /*
-                    Pokud mají stejný deadline,
-                    nověji zadaný úkol bude výše.
-                */
 
                 return compareCreatedDatesNewestFirst(
                     a,
@@ -852,14 +837,13 @@ function sortTasks(tasks) {
 
 
             /*
-                Úkol s deadline má přednost
-                před úkolem bez deadline.
+                Úkol s termínem splnění má přednost
+                před úkolem bez termínu.
             */
 
             if (aHasDeadline) {
                 return -1;
             }
-
 
             if (bHasDeadline) {
                 return 1;
@@ -867,10 +851,9 @@ function sortTasks(tasks) {
 
 
             /*
-                2.
-                Ani jeden nemá deadline.
+                2. Ani jeden nemá deadline.
 
-                Pokud oba mají "Zadáno",
+                Pokud mají Zadáno,
                 nejnovější je nahoře.
             */
 
@@ -878,7 +861,6 @@ function sortTasks(tasks) {
                 Boolean(
                     a.createdDate
                 );
-
 
             const bHasCreated =
                 Boolean(
@@ -897,15 +879,9 @@ function sortTasks(tasks) {
             }
 
 
-            /*
-                Úkol se zadaným datem
-                bude před úkolem bez data.
-            */
-
             if (aHasCreated) {
                 return -1;
             }
-
 
             if (bHasCreated) {
                 return 1;
@@ -913,11 +889,8 @@ function sortTasks(tasks) {
 
 
             /*
-                3.
-                Bez termínu a bez data zadání.
-
-                Zachováme pořadí
-                z Google Sheets.
+                3. Bez obou datumů.
+                Zachováme pořadí z Google Sheets.
             */
 
             return (
@@ -943,16 +916,13 @@ function compareCreatedDatesNewestFirst(
         );
     }
 
-
     if (a.createdDate) {
         return -1;
     }
 
-
     if (b.createdDate) {
         return 1;
     }
-
 
     return (
         a.originalIndex -
@@ -974,24 +944,20 @@ function createTaskPersonSection(
             "task-person-template"
         );
 
-
     const fragment =
         template.content.cloneNode(
             true
         );
-
 
     const nameElement =
         fragment.querySelector(
             ".task-person-name"
         );
 
-
     const countElement =
         fragment.querySelector(
             ".task-count"
         );
-
 
     const listElement =
         fragment.querySelector(
@@ -1001,7 +967,6 @@ function createTaskPersonSection(
 
     nameElement.textContent =
         assignee;
-
 
     countElement.textContent =
         formatTaskCount(
@@ -1030,60 +995,50 @@ function createTaskCard(task) {
             "task-card-template"
         );
 
-
     const fragment =
         template.content.cloneNode(
             true
         );
-
 
     const card =
         fragment.querySelector(
             ".task-card"
         );
 
-
     const title =
         fragment.querySelector(
             ".task-title"
         );
-
 
     const overdueBadge =
         fragment.querySelector(
             ".overdue-badge"
         );
 
-
     const dates =
         fragment.querySelector(
             ".task-dates"
         );
-
 
     const created =
         fragment.querySelector(
             ".task-created"
         );
 
-
     const createdValue =
         fragment.querySelector(
             ".task-created-value"
         );
-
 
     const deadline =
         fragment.querySelector(
             ".task-deadline"
         );
 
-
     const deadlineValue =
         fragment.querySelector(
             ".task-deadline-value"
         );
-
 
     const note =
         fragment.querySelector(
@@ -1127,6 +1082,8 @@ function createTaskCard(task) {
 
     /*
         TERMÍN SPLNĚNÍ
+
+        Funguje i samostatně bez Zadáno.
     */
 
     if (task.deadlineDate) {
@@ -1187,7 +1144,6 @@ function parseDate(value) {
         return null;
     }
 
-
     if (
         value instanceof Date &&
         !Number.isNaN(
@@ -1197,10 +1153,8 @@ function parseDate(value) {
         return value;
     }
 
-
     const text =
         String(value).trim();
-
 
     if (!text) {
         return null;
@@ -1216,7 +1170,6 @@ function parseDate(value) {
             /^(\d{4})-(\d{1,2})-(\d{1,2})$/
         );
 
-
     if (match) {
         const [
             ,
@@ -1224,7 +1177,6 @@ function parseDate(value) {
             month,
             day
         ] = match;
-
 
         return createLocalDate(
             Number(year),
@@ -1244,7 +1196,6 @@ function parseDate(value) {
             /^(\d{1,2})\.\s*(\d{1,2})\.\s*(\d{4})$/
         );
 
-
     if (match) {
         const [
             ,
@@ -1252,7 +1203,6 @@ function parseDate(value) {
             month,
             year
         ] = match;
-
 
         return createLocalDate(
             Number(year),
@@ -1271,7 +1221,6 @@ function parseDate(value) {
             /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
         );
 
-
     if (match) {
         const [
             ,
@@ -1279,7 +1228,6 @@ function parseDate(value) {
             month,
             year
         ] = match;
-
 
         return createLocalDate(
             Number(year),
@@ -1291,7 +1239,6 @@ function parseDate(value) {
 
     const parsed =
         new Date(text);
-
 
     return Number.isNaN(
         parsed.getTime()
@@ -1317,7 +1264,6 @@ function createLocalDate(
             day
         );
 
-
     if (
         date.getFullYear() !== year ||
         date.getMonth() !== month - 1 ||
@@ -1325,7 +1271,6 @@ function createLocalDate(
     ) {
         return null;
     }
-
 
     return date;
 }
@@ -1340,7 +1285,6 @@ function formatDate(date) {
         return "";
     }
 
-
     return new Intl.DateTimeFormat(
         "cs-CZ",
         {
@@ -1354,12 +1298,6 @@ function formatDate(date) {
 
 /* =========================================================
    PO TERMÍNU
-
-   Porovnání probíhá vůči aktuálnímu
-   kalendářnímu dni v Praze.
-
-   Deadline, který je právě dnes,
-   ještě není po termínu.
 ========================================================= */
 
 function isOverdue(deadlineDate) {
@@ -1367,10 +1305,8 @@ function isOverdue(deadlineDate) {
         return false;
     }
 
-
     const todayParts =
         getPragueTodayParts();
-
 
     const today =
         createLocalDate(
@@ -1379,14 +1315,12 @@ function isOverdue(deadlineDate) {
             todayParts.day
         );
 
-
     const deadline =
         createLocalDate(
             deadlineDate.getFullYear(),
             deadlineDate.getMonth() + 1,
             deadlineDate.getDate()
         );
-
 
     return deadline < today;
 }
@@ -1415,15 +1349,12 @@ function getPragueTodayParts() {
             }
         );
 
-
     const parts =
         formatter.formatToParts(
             new Date()
         );
 
-
     const values = {};
-
 
     parts.forEach((part) => {
         if (
@@ -1435,7 +1366,6 @@ function getPragueTodayParts() {
                 );
         }
     });
-
 
     return {
         year:
@@ -1462,20 +1392,9 @@ function cleanString(value) {
         return "";
     }
 
-
     return String(value).trim();
 }
 
-
-/*
-    Používáme například pro porovnání:
-
-    Zkouška
-    zkouska
-    ZKOUŠKA
-
-    => stejná hodnota
-*/
 
 function normalizeText(value) {
     return cleanString(value)
@@ -1500,12 +1419,10 @@ function showLoadError() {
             "last-update-value"
         );
 
-
     const scheduleContainer =
         document.getElementById(
             "schedule-container"
         );
-
 
     const tasksContainer =
         document.getElementById(
