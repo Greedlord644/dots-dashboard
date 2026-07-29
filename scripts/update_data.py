@@ -3,7 +3,6 @@ import io
 import json
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import quote
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
@@ -14,25 +13,32 @@ PUBLISHED_SHEET_BASE_URL = (
     "/pub"
 )
 
-TERMINY_SHEET = "Termíny"
-TASKS_SHEET = "Aktuální úkoly"
+TERMINY_GID = "0"
+TASKS_GID = "396059144"
 
 OUTPUT_FILE = Path("data/dashboard.json")
 
 PRAGUE_TZ = ZoneInfo("Europe/Prague")
 
 
-def get_csv_url(sheet_name: str) -> str:
+def get_csv_url(gid: str) -> str:
+    """
+    Vytvoří CSV endpoint pro konkrétní záložku
+    publikovaného Google Sheets souboru.
+    """
     return (
         f"{PUBLISHED_SHEET_BASE_URL}"
-        f"?output=csv&sheet={quote(sheet_name)}"
+        f"?output=csv&gid={gid}"
     )
 
 
-def download_csv(sheet_name: str) -> list[dict[str, str]]:
-    url = get_csv_url(sheet_name)
+def download_csv(sheet_name: str, gid: str) -> list[dict[str, str]]:
+    """
+    Stáhne konkrétní záložku jako CSV.
+    """
+    url = get_csv_url(gid)
 
-    print(f"Načítám list: {sheet_name}")
+    print(f"Načítám list: {sheet_name} (gid={gid})")
 
     request = Request(
         url,
@@ -182,30 +188,40 @@ def build_tasks(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         if not task or not assignee:
             continue
 
+        created_iso = ""
+        created_display = ""
+
+        if created_raw:
+            created_iso = iso_date(created_raw)
+            created_display = display_date(created_raw)
+
+            if not created_iso:
+                print(
+                    f"VAROVÁNÍ: Neznámý formát data 'Zadáno' "
+                    f"u úkolu {task!r}: {created_raw!r}"
+                )
+
+        deadline_iso = ""
+        deadline_display = ""
+
+        if deadline_raw:
+            deadline_iso = iso_date(deadline_raw)
+            deadline_display = display_date(deadline_raw)
+
+            if not deadline_iso:
+                print(
+                    f"VAROVÁNÍ: Neznámý formát data 'Termín splnění' "
+                    f"u úkolu {task!r}: {deadline_raw!r}"
+                )
+
         tasks.append(
             {
                 "task": task,
                 "assignee": assignee,
-                "created": (
-                    iso_date(created_raw)
-                    if created_raw
-                    else ""
-                ),
-                "created_display": (
-                    display_date(created_raw)
-                    if created_raw
-                    else ""
-                ),
-                "deadline": (
-                    iso_date(deadline_raw)
-                    if deadline_raw
-                    else ""
-                ),
-                "deadline_display": (
-                    display_date(deadline_raw)
-                    if deadline_raw
-                    else ""
-                ),
+                "created": created_iso,
+                "created_display": created_display,
+                "deadline": deadline_iso,
+                "deadline_display": deadline_display,
                 "note": note,
             }
         )
@@ -214,6 +230,10 @@ def build_tasks(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def get_updated_at() -> str:
+    """
+    Aktuální čas v Praze.
+    Europe/Prague automaticky řeší CET i CEST.
+    """
     now = datetime.now(PRAGUE_TZ)
 
     return now.strftime("%d.%m.%Y %H:%M")
@@ -222,23 +242,15 @@ def get_updated_at() -> str:
 def main() -> None:
     print("Generuji DOTS Dashboard data")
 
-    terminy_rows = download_csv(TERMINY_SHEET)
-    task_rows = download_csv(TASKS_SHEET)
+    terminy_rows = download_csv(
+        "Termíny",
+        TERMINY_GID,
+    )
 
-    print()
-    print("=== DEBUG: Aktuální úkoly ===")
-
-    if task_rows:
-        print("Názvy sloupců:")
-        print(list(task_rows[0].keys()))
-
-        print("První řádek:")
-        print(task_rows[0])
-    else:
-        print("List neobsahuje žádná data.")
-
-    print("=== KONEC DEBUG ===")
-    print()
+    task_rows = download_csv(
+        "Aktuální úkoly",
+        TASKS_GID,
+    )
 
     events = build_events(terminy_rows)
     tasks = build_tasks(task_rows)
@@ -264,6 +276,7 @@ def main() -> None:
         encoding="utf-8",
     )
 
+    print()
     print(f"Termíny: {len(events)}")
     print(f"Úkoly: {len(tasks)}")
     print(f"Výstup: {OUTPUT_FILE}")
