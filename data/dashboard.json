@@ -1,5 +1,5 @@
 {
-  "updated_at": "29.07.2026 13:44",
+  "updated_at": "29.07.2026 13:55",
   "events": [
     {
       "date": "2026-08-03",
@@ -89,8 +89,8 @@
       "assignee": "Pavel",
       "created": "",
       "created_display": "",
-      "deadline": "",
-      "deadline_display": "",
+      "deadline": "2026-08-02",
+      "deadline_display": "02.08.2026",
       "note": ""
     },
     {
@@ -98,17 +98,8 @@
       "assignee": "Pavel",
       "created": "",
       "created_display": "",
-      "deadline": "",
-      "deadline_display": "",
-      "note": ""
-    },
-    {
-      "task": "Vyexportovat a poslat linky The Way You Are",
-      "assignee": "Pavel",
-      "created": "",
-      "created_display": "",
-      "deadline": "",
-      "deadline_display": "",
+      "deadline": "2026-08-02",
+      "deadline_display": "02.08.2026",
       "note": ""
     }
   ]
