@@ -1,5 +1,5 @@
 {
-  "updated_at": "29.07.2026 12:31",
+  "updated_at": "29.07.2026 12:35",
   "events": [
     {
       "date": "2026-08-03",
@@ -74,5 +74,42 @@
       "note": "Koncert v Praze (Chapeau Rouge) s Dead Phoenix"
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "task": "Nasdílet SMR CZ/SK playlisty na story",
+      "assignee": "Filip",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": ""
+    },
+    {
+      "task": "Vyexportovat a poslat linky Carnivore",
+      "assignee": "Pavel",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": ""
+    },
+    {
+      "task": "Vyexportovat a poslat linky The Drain",
+      "assignee": "Pavel",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": ""
+    },
+    {
+      "task": "Vyexportovat a poslat linky The Way You Are",
+      "assignee": "Pavel",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": ""
+    }
+  ]
 }
