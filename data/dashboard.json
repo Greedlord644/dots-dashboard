@@ -1,5 +1,5 @@
 {
-  "updated_at": "29.07.2026 10:30",
+  "updated_at": "29.07.2026 12:27",
   "events": [
     {
       "date": "2026-08-03",
@@ -74,51 +74,5 @@
       "note": "Koncert v Praze (Chapeau Rouge) s Dead Phoenix"
     }
   ],
-  "tasks": [
-    {
-      "task": "Nasdílet SMR CZ/SK playlisty na story",
-      "assignee": "Filip",
-      "created": "",
-      "created_display": "",
-      "deadline": "",
-      "deadline_display": "",
-      "note": ""
-    },
-    {
-      "task": "Vyexportovat a poslat linky Carnivore",
-      "assignee": "Pavel",
-      "created": "2026-07-28",
-      "created_display": "28.07.2026",
-      "deadline": "2026-08-01",
-      "deadline_display": "01.08.2026",
-      "note": ""
-    },
-    {
-      "task": "Vyexportovat a poslat linky The Drain",
-      "assignee": "Pavel",
-      "created": "2026-07-26",
-      "created_display": "26.07.2026",
-      "deadline": "",
-      "deadline_display": "",
-      "note": "Poslat i pracovní mix."
-    },
-    {
-      "task": "Poslat podklady grafikovi",
-      "assignee": "Pavel",
-      "created": "2026-07-20",
-      "created_display": "20.07.2026",
-      "deadline": "2026-07-25",
-      "deadline_display": "25.07.2026",
-      "note": "Poslat logo a aktuální band photo."
-    },
-    {
-      "task": "Vyexportovat a poslat linky The Way You Are",
-      "assignee": "Pavel",
-      "created": "",
-      "created_display": "",
-      "deadline": "",
-      "deadline_display": "",
-      "note": ""
-    }
-  ]
+  "tasks": []
 }
