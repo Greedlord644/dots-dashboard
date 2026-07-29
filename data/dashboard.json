@@ -1,5 +1,5 @@
 {
-  "updated_at": "29.07.2026 12:45",
+  "updated_at": "29.07.2026 13:44",
   "events": [
     {
       "date": "2026-08-03",
@@ -80,8 +80,8 @@
       "assignee": "Filip",
       "created": "",
       "created_display": "",
-      "deadline": "",
-      "deadline_display": "",
+      "deadline": "2026-07-30",
+      "deadline_display": "30.07.2026",
       "note": ""
     },
     {
