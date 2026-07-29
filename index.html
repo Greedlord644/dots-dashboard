@@ -21,7 +21,10 @@
 
     <div class="page">
 
-        <!-- HEADER -->
+        <!-- ==========================================
+             HEADER
+        =========================================== -->
+
         <header class="site-header">
 
             <div class="brand">
@@ -40,8 +43,13 @@
             </div>
 
             <div class="last-update">
-                <span class="last-update-label">Poslední aktualizace</span>
-                <span id="last-update-value">Načítám...</span>
+                <span class="last-update-label">
+                    Poslední aktualizace
+                </span>
+
+                <span id="last-update-value">
+                    Načítám...
+                </span>
             </div>
 
         </header>
@@ -53,81 +61,133 @@
                  TERMÍNY
             =========================================== -->
 
-            <section class="dashboard-section schedules-section">
+            <section
+                class="dashboard-section schedules-section collapsible-section"
+                id="schedules-section"
+            >
 
                 <div class="section-heading">
+
                     <div>
-                        <span class="section-kicker">Kalendář</span>
+                        <span class="section-kicker">
+                            Kalendář
+                        </span>
+
                         <h2>Termíny</h2>
                     </div>
+
+
+                    <button
+                        type="button"
+                        class="section-toggle"
+                        id="schedules-toggle"
+                        aria-expanded="true"
+                        aria-controls="schedules-content"
+                    >
+                        <span
+                            class="section-toggle-icon"
+                            aria-hidden="true"
+                        >
+                            −
+                        </span>
+
+                        <span class="section-toggle-label">
+                            Sbalit
+                        </span>
+                    </button>
+
                 </div>
 
 
-                <!-- FILTRY -->
-                <div class="filters" id="schedule-filters">
+                <!--
+                    Obsah celé sekce Termíny.
 
-                    <div class="filter-group">
+                    Po kliknutí na Sbalit se schová:
+                    - filtr
+                    - termíny
+                    - případná hláška o prázdném výsledku
 
-                        <span class="filter-label">
-                            Událost
-                        </span>
+                    Nadpis Termíny a tlačítko zůstanou.
+                -->
 
-                        <div
-                            class="filter-options"
-                            id="event-type-filters"
-                        >
-                            <!--
-                                JavaScript sem automaticky vloží:
-                                Zkoušky
-                                Studio
-                                Koncerty
-                            -->
+                <div
+                    class="section-content"
+                    id="schedules-content"
+                >
+
+                    <!-- FILTRY -->
+
+                    <div
+                        class="filters"
+                        id="schedule-filters"
+                    >
+
+                        <div class="filter-group">
+
+                            <span class="filter-label">
+                                Událost
+                            </span>
+
+                            <div
+                                class="filter-options"
+                                id="event-type-filters"
+                            >
+                                <!--
+                                    JavaScript automaticky vloží:
+                                    Zkoušky
+                                    Studio
+                                    Koncerty
+                                -->
+                            </div>
+
+                        </div>
+
+
+                        <div class="filter-group">
+
+                            <span class="filter-label">
+                                Rok
+                            </span>
+
+                            <div
+                                class="filter-options"
+                                id="year-filters"
+                            >
+                                <!--
+                                    Roky se vytvoří automaticky
+                                    podle dat.
+                                -->
+                            </div>
+
                         </div>
 
                     </div>
 
 
-                    <div class="filter-group">
+                    <!-- TERMÍNY -->
 
-                        <span class="filter-label">
-                            Rok
-                        </span>
+                    <div
+                        id="schedule-container"
+                        class="schedule-container"
+                    >
 
-                        <div
-                            class="filter-options"
-                            id="year-filters"
-                        >
-                            <!--
-                                Roky se vytvoří automaticky
-                                podle dat v Google Sheets.
-                            -->
+                        <div class="loading-state">
+                            Načítám termíny...
                         </div>
 
                     </div>
 
-                </div>
 
+                    <!-- PRÁZDNÝ VÝSLEDEK FILTRU -->
 
-                <!-- TERMÍNY -->
-                <div
-                    id="schedule-container"
-                    class="schedule-container"
-                >
-
-                    <div class="loading-state">
-                        Načítám termíny...
+                    <div
+                        id="schedule-empty"
+                        class="empty-state"
+                        hidden
+                    >
+                        Pro vybrané filtry nejsou žádné termíny.
                     </div>
 
-                </div>
-
-
-                <!-- STAV PŘI PRÁZDNÉM FILTRU -->
-                <div
-                    id="schedule-empty"
-                    class="empty-state"
-                    hidden
-                >
-                    Pro vybrané filtry nejsou žádné termíny.
                 </div>
 
             </section>
@@ -137,34 +197,76 @@
                  AKTUÁLNÍ ÚKOLY
             =========================================== -->
 
-            <section class="dashboard-section tasks-section">
+            <section
+                class="dashboard-section tasks-section collapsible-section"
+                id="tasks-section"
+            >
 
                 <div class="section-heading">
+
                     <div>
-                        <span class="section-kicker">Kapela</span>
+                        <span class="section-kicker">
+                            Kapela
+                        </span>
+
                         <h2>Aktuální úkoly</h2>
                     </div>
+
+
+                    <button
+                        type="button"
+                        class="section-toggle"
+                        id="tasks-toggle"
+                        aria-expanded="true"
+                        aria-controls="tasks-content"
+                    >
+                        <span
+                            class="section-toggle-icon"
+                            aria-hidden="true"
+                        >
+                            −
+                        </span>
+
+                        <span class="section-toggle-label">
+                            Sbalit
+                        </span>
+                    </button>
+
                 </div>
 
 
+                <!--
+                    Obsah sekce Aktuální úkoly.
+
+                    Po sbalení zůstane pouze nadpis
+                    a tlačítko Rozbalit.
+                -->
+
                 <div
-                    id="tasks-container"
-                    class="tasks-container"
+                    class="section-content"
+                    id="tasks-content"
                 >
 
-                    <div class="loading-state">
-                        Načítám úkoly...
+                    <div
+                        id="tasks-container"
+                        class="tasks-container"
+                    >
+
+                        <div class="loading-state">
+                            Načítám úkoly...
+                        </div>
+
                     </div>
 
-                </div>
 
+                    <div
+                        id="tasks-empty"
+                        class="empty-state"
+                        hidden
+                    >
+                        Momentálně nejsou evidovány žádné úkoly.
+                    </div>
 
-                <div
-                    id="tasks-empty"
-                    class="empty-state"
-                    hidden
-                >
-                    Momentálně nejsou evidovány žádné úkoly.
                 </div>
 
             </section>
@@ -172,19 +274,33 @@
         </main>
 
 
-        <!-- FOOTER -->
+        <!-- ==========================================
+             FOOTER
+        =========================================== -->
+
         <footer class="site-footer">
-            <span>Dream of the Sun</span>
-            <span class="footer-separator">•</span>
-            <span>DOTS Dashboard</span>
+
+            <span>
+                Dream of the Sun
+            </span>
+
+            <span class="footer-separator">
+                •
+            </span>
+
+            <span>
+                DOTS Dashboard
+            </span>
+
         </footer>
 
     </div>
 
 
-    <!--
-        Template jednoho termínu.
-    -->
+    <!-- ==========================================
+         TEMPLATE TERMÍNU
+    =========================================== -->
+
     <template id="schedule-card-template">
 
         <article class="schedule-card">
@@ -192,13 +308,18 @@
             <div class="schedule-main">
 
                 <div class="schedule-date">
+
                     <span class="schedule-date-value"></span>
+
                     <span class="schedule-day"></span>
+
                 </div>
+
 
                 <div class="schedule-event-row">
 
                     <h3 class="schedule-event"></h3>
+
 
                     <span
                         class="status-badge tentative-badge"
@@ -208,6 +329,7 @@
                     </span>
 
                 </div>
+
 
                 <div
                     class="schedule-note"
@@ -223,11 +345,14 @@
                     class="pickup-info"
                     hidden
                 >
+
                     <span class="meta-label">
                         Vyzvednutí na Skalce?
                     </span>
 
+
                     <span class="pickup-value"></span>
+
                 </div>
 
             </div>
@@ -237,17 +362,22 @@
     </template>
 
 
-    <!--
-        Template skupiny úkolů jednoho řešitele.
-    -->
+    <!-- ==========================================
+         TEMPLATE ŘEŠITELE
+    =========================================== -->
+
     <template id="task-person-template">
 
         <section class="task-person">
 
             <div class="task-person-heading">
+
                 <h3 class="task-person-name"></h3>
+
                 <span class="task-count"></span>
+
             </div>
+
 
             <div class="task-list"></div>
 
@@ -256,9 +386,10 @@
     </template>
 
 
-    <!--
-        Template jednoho úkolu.
-    -->
+    <!-- ==========================================
+         TEMPLATE ÚKOLU
+    =========================================== -->
+
     <template id="task-card-template">
 
         <article class="task-card">
@@ -266,6 +397,7 @@
             <div class="task-header">
 
                 <h4 class="task-title"></h4>
+
 
                 <span
                     class="status-badge overdue-badge"
@@ -286,11 +418,14 @@
                     class="task-date task-created"
                     hidden
                 >
+
                     <span class="meta-label">
                         Zadáno
                     </span>
 
+
                     <span class="task-created-value"></span>
+
                 </div>
 
 
@@ -298,11 +433,14 @@
                     class="task-date task-deadline"
                     hidden
                 >
+
                     <span class="meta-label">
                         Termín
                     </span>
 
+
                     <span class="task-deadline-value"></span>
+
                 </div>
 
             </div>
@@ -317,6 +455,10 @@
 
     </template>
 
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
 
     <script src="assets/app.js"></script>
 
