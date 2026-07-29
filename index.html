@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#0b0b0d">
+
+    <meta
+        name="description"
+        content="Dream of the Sun – termíny a aktuální úkoly kapely."
+    >
+
+    <title>DOTS Dashboard</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <div class="page">
+
+        <!-- HEADER -->
+        <header class="site-header">
+
+            <div class="brand">
+
+                <img
+                    src="assets/logo.jpg"
+                    alt="Dream of the Sun"
+                    class="brand-logo"
+                >
+
+                <div class="brand-text">
+                    <h1>DOTS Dashboard</h1>
+                    <p>Dream of the Sun</p>
+                </div>
+
+            </div>
+
+            <div class="last-update">
+                <span class="last-update-label">Poslední aktualizace</span>
+                <span id="last-update-value">Načítám...</span>
+            </div>
+
+        </header>
+
+
+        <main>
+
+            <!-- ==========================================
+                 TERMÍNY
+            =========================================== -->
+
+            <section class="dashboard-section schedules-section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Kalendář</span>
+                        <h2>Termíny</h2>
+                    </div>
+                </div>
+
+
+                <!-- FILTRY -->
+                <div class="filters" id="schedule-filters">
+
+                    <div class="filter-group">
+
+                        <span class="filter-label">
+                            Událost
+                        </span>
+
+                        <div
+                            class="filter-options"
+                            id="event-type-filters"
+                        >
+                            <!--
+                                JavaScript sem automaticky vloží:
+                                Zkoušky
+                                Studio
+                                Koncerty
+                            -->
+                        </div>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <span class="filter-label">
+                            Rok
+                        </span>
+
+                        <div
+                            class="filter-options"
+                            id="year-filters"
+                        >
+                            <!--
+                                Roky se vytvoří automaticky
+                                podle dat v Google Sheets.
+                            -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMÍNY -->
+                <div
+                    id="schedule-container"
+                    class="schedule-container"
+                >
+
+                    <div class="loading-state">
+                        Načítám termíny...
+                    </div>
+
+                </div>
+
+
+                <!-- STAV PŘI PRÁZDNÉM FILTRU -->
+                <div
+                    id="schedule-empty"
+                    class="empty-state"
+                    hidden
+                >
+                    Pro vybrané filtry nejsou žádné termíny.
+                </div>
+
+            </section>
+
+
+            <!-- ==========================================
+                 AKTUÁLNÍ ÚKOLY
+            =========================================== -->
+
+            <section class="dashboard-section tasks-section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Kapela</span>
+                        <h2>Aktuální úkoly</h2>
+                    </div>
+                </div>
+
+
+                <div
+                    id="tasks-container"
+                    class="tasks-container"
+                >
+
+                    <div class="loading-state">
+                        Načítám úkoly...
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="tasks-empty"
+                    class="empty-state"
+                    hidden
+                >
+                    Momentálně nejsou evidovány žádné úkoly.
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+            <span>Dream of the Sun</span>
+            <span class="footer-separator">•</span>
+            <span>DOTS Dashboard</span>
+        </footer>
+
+    </div>
+
+
+    <!--
+        Template jednoho termínu.
+
+        JavaScript si ho zkopíruje pro každý řádek
+        načtený z Google Sheets.
+    -->
+    <template id="schedule-card-template">
+
+        <article class="schedule-card">
+
+            <div class="schedule-main">
+
+                <div class="schedule-date">
+                    <span class="schedule-date-value"></span>
+                    <span class="schedule-day"></span>
+                </div>
+
+                <div class="schedule-event-row">
+
+                    <h3 class="schedule-event"></h3>
+
+                    <span
+                        class="status-badge tentative-badge"
+                        hidden
+                    >
+                        Předběžné
+                    </span>
+
+                </div>
+
+                <div
+                    class="schedule-note"
+                    hidden
+                ></div>
+
+            </div>
+
+
+            <div class="schedule-meta">
+
+                <div
+                    class="pickup-info"
+                    hidden
+                >
+                    <span class="meta-label">
+                        Skalka
+                    </span>
+
+                    <span class="pickup-value"></span>
+                </div>
+
+            </div>
+
+        </article>
+
+    </template>
+
+
+    <!--
+        Template skupiny úkolů jednoho řešitele.
+    -->
+    <template id="task-person-template">
+
+        <section class="task-person">
+
+            <div class="task-person-heading">
+                <h3 class="task-person-name"></h3>
+                <span class="task-count"></span>
+            </div>
+
+            <div class="task-list"></div>
+
+        </section>
+
+    </template>
+
+
+    <!--
+        Template jednoho úkolu.
+    -->
+    <template id="task-card-template">
+
+        <article class="task-card">
+
+            <div class="task-header">
+
+                <h4 class="task-title"></h4>
+
+                <span
+                    class="status-badge overdue-badge"
+                    hidden
+                >
+                    Po termínu
+                </span>
+
+            </div>
+
+
+            <div
+                class="task-dates"
+                hidden
+            >
+
+                <div
+                    class="task-date task-created"
+                    hidden
+                >
+                    <span class="meta-label">
+                        Zadáno
+                    </span>
+
+                    <span class="task-created-value"></span>
+                </div>
+
+
+                <div
+                    class="task-date task-deadline"
+                    hidden
+                >
+                    <span class="meta-label">
+                        Termín
+                    </span>
+
+                    <span class="task-deadline-value"></span>
+                </div>
+
+            </div>
+
+
+            <div
+                class="task-note"
+                hidden
+            ></div>
+
+        </article>
+
+    </template>
+
+
+    <!-- JavaScript dashboardu -->
+    <script src="assets/app.js"></script>
+
+</body>
+</html>
