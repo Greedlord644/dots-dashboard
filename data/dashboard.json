@@ -1,5 +1,5 @@
 {
-  "updated_at": "29.07.2026 14:50",
+  "updated_at": "29.07.2026 21:10",
   "events": [
     {
       "date": "2026-08-03",
@@ -29,17 +29,9 @@
       "date": "2026-08-24",
       "date_display": "24.08.2026",
       "day": "Pondělí",
-      "event": "Kuba studio (?)",
-      "pickup": "",
-      "note": "Čeká se na potvrzení Kubou. Buď 24.8 (za nás preferovaný) nebo 25.8."
-    },
-    {
-      "date": "2026-08-25",
-      "date_display": "25.08.2026",
-      "day": "Úterý",
-      "event": "Kuba studio (?)",
-      "pickup": "",
-      "note": "Čeká se na potvrzení Kubou. Buď 24.8  (za nás preferovaný) nebo 25.8."
+      "event": "Zkouška",
+      "pickup": "Luky v 16:30",
+      "note": ""
     },
     {
       "date": "2026-09-19",
