@@ -1,0 +1,108 @@
+{
+  "updated_at": "29.07.2026 10:30",
+  "events": [
+    {
+      "date": "2026-08-03",
+      "date_display": "03.08.2026",
+      "day": "Pondělí",
+      "event": "Zkouška",
+      "pickup": "Luky 16:30",
+      "note": ""
+    },
+    {
+      "date": "2026-08-12",
+      "date_display": "12.08.2026",
+      "day": "Středa",
+      "event": "Zkouška",
+      "pickup": "",
+      "note": ""
+    },
+    {
+      "date": "2026-08-24",
+      "date_display": "24.08.2026",
+      "day": "Pondělí",
+      "event": "Kuba studio (?)",
+      "pickup": "",
+      "note": "Čeká se na potvrzení Kubou"
+    },
+    {
+      "date": "2026-09-19",
+      "date_display": "19.09.2026",
+      "day": "Sobota",
+      "event": "Koncert",
+      "pickup": "",
+      "note": "SUNFEST Brno (Kabinet MÚZ)"
+    },
+    {
+      "date": "2026-10-10",
+      "date_display": "10.10.2026",
+      "day": "Sobota",
+      "event": "Koncert",
+      "pickup": "",
+      "note": "SUNFEST Praha (Chapeau Rouge)"
+    },
+    {
+      "date": "2027-11-11",
+      "date_display": "11.11.2027",
+      "day": "Čtvrtek",
+      "event": "Koncert (?)",
+      "pickup": "",
+      "note": "Koncert v Lipsku"
+    },
+    {
+      "date": "2027-11-12",
+      "date_display": "12.11.2027",
+      "day": "Pátek",
+      "event": "Koncert",
+      "pickup": "",
+      "note": "Koncert v Praze"
+    }
+  ],
+  "tasks": [
+    {
+      "task": "Nasdílet SMR CZ/SK playlisty na story",
+      "assignee": "Filip",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": ""
+    },
+    {
+      "task": "Vyexportovat a poslat linky Carnivore",
+      "assignee": "Pavel",
+      "created": "2026-07-28",
+      "created_display": "28.07.2026",
+      "deadline": "2026-08-01",
+      "deadline_display": "01.08.2026",
+      "note": ""
+    },
+    {
+      "task": "Vyexportovat a poslat linky The Drain",
+      "assignee": "Pavel",
+      "created": "2026-07-26",
+      "created_display": "26.07.2026",
+      "deadline": "",
+      "deadline_display": "",
+      "note": "Poslat i pracovní mix."
+    },
+    {
+      "task": "Poslat podklady grafikovi",
+      "assignee": "Pavel",
+      "created": "2026-07-20",
+      "created_display": "20.07.2026",
+      "deadline": "2026-07-25",
+      "deadline_display": "25.07.2026",
+      "note": "Poslat logo a aktuální band photo."
+    },
+    {
+      "task": "Vyexportovat a poslat linky The Way You Are",
+      "assignee": "Pavel",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": ""
+    }
+  ]
+}
