@@ -22,20 +22,10 @@ PRAGUE_TZ = ZoneInfo("Europe/Prague")
 
 
 def get_csv_url(gid: str) -> str:
-    """
-    Vytvoří CSV endpoint pro konkrétní záložku
-    publikovaného Google Sheets souboru.
-    """
-    return (
-        f"{PUBLISHED_SHEET_BASE_URL}"
-        f"?output=csv&gid={gid}"
-    )
+    return f"{PUBLISHED_SHEET_BASE_URL}?output=csv&gid={gid}"
 
 
 def download_csv(sheet_name: str, gid: str) -> list[dict[str, str]]:
-    """
-    Stáhne konkrétní záložku jako CSV.
-    """
     url = get_csv_url(gid)
 
     print(f"Načítám list: {sheet_name} (gid={gid})")
@@ -56,7 +46,6 @@ def download_csv(sheet_name: str, gid: str) -> list[dict[str, str]]:
         ) from exc
 
     reader = csv.DictReader(io.StringIO(content))
-
     rows = []
 
     for raw_row in reader:
@@ -230,13 +219,38 @@ def build_tasks(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def get_updated_at() -> str:
-    """
-    Aktuální čas v Praze.
-    Europe/Prague automaticky řeší CET i CEST.
-    """
     now = datetime.now(PRAGUE_TZ)
-
     return now.strftime("%d.%m.%Y %H:%M")
+
+
+def load_existing_dashboard() -> dict:
+    if not OUTPUT_FILE.exists():
+        return {}
+
+    try:
+        return json.loads(
+            OUTPUT_FILE.read_text(encoding="utf-8")
+        )
+    except (json.JSONDecodeError, OSError) as exc:
+        print(
+            "VAROVÁNÍ: Stávající dashboard.json se nepodařilo "
+            f"načíst: {exc}"
+        )
+        return {}
+
+
+def dashboard_data_changed(
+    existing: dict,
+    events: list[dict[str, str]],
+    tasks: list[dict[str, str]],
+) -> bool:
+    existing_events = existing.get("events", [])
+    existing_tasks = existing.get("tasks", [])
+
+    return (
+        existing_events != events
+        or existing_tasks != tasks
+    )
 
 
 def main() -> None:
@@ -254,6 +268,21 @@ def main() -> None:
 
     events = build_events(terminy_rows)
     tasks = build_tasks(task_rows)
+
+    existing_dashboard = load_existing_dashboard()
+
+    print()
+    print(f"Termíny: {len(events)}")
+    print(f"Úkoly: {len(tasks)}")
+
+    if not dashboard_data_changed(
+        existing_dashboard,
+        events,
+        tasks,
+    ):
+        print("Data se nezměnila.")
+        print("dashboard.json ponechávám beze změny.")
+        return
 
     dashboard = {
         "updated_at": get_updated_at(),
@@ -276,9 +305,7 @@ def main() -> None:
         encoding="utf-8",
     )
 
-    print()
-    print(f"Termíny: {len(events)}")
-    print(f"Úkoly: {len(tasks)}")
+    print("Data se změnila.")
     print(f"Výstup: {OUTPUT_FILE}")
     print(f"Aktualizováno: {dashboard['updated_at']}")
 
