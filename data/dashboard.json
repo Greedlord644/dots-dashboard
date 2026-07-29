@@ -1,5 +1,5 @@
 {
-  "updated_at": "29.07.2026 21:10",
+  "updated_at": "29.07.2026 21:25",
   "events": [
     {
       "date": "2026-08-03",
@@ -97,15 +97,6 @@
     {
       "task": "Dát zpětnou vazbu k instrumentálu The Drain od Pavla",
       "assignee": "Filip",
-      "created": "2026-07-29",
-      "created_display": "29.07.2026",
-      "deadline": "",
-      "deadline_display": "",
-      "note": ""
-    },
-    {
-      "task": "Dát zpětnou vazbu k instrumentálu The Drain od Pavla",
-      "assignee": "Lukáš",
       "created": "2026-07-29",
       "created_display": "29.07.2026",
       "deadline": "",
