@@ -1,5 +1,5 @@
 {
-  "updated_at": "30.07.2026 11:05",
+  "updated_at": "30.07.2026 16:10",
   "events": [
     {
       "date": "2026-08-03",
@@ -93,6 +93,15 @@
       "deadline": "2026-08-02",
       "deadline_display": "02.08.2026",
       "note": "Podmíněno zasláním podkladů od Pavla"
+    },
+    {
+      "task": "Domluvit termín studia s Kubou pro Dying Tonight",
+      "assignee": "Danylo",
+      "created": "2026-07-30",
+      "created_display": "30.07.2026",
+      "deadline": "2026-08-09",
+      "deadline_display": "09.08.2026",
+      "note": ""
     }
   ]
 }
