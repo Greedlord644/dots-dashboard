@@ -1,5 +1,5 @@
 {
-  "updated_at": "30.07.2026 16:10",
+  "updated_at": "30.07.2026 18:30",
   "events": [
     {
       "date": "2026-08-03",
@@ -32,6 +32,14 @@
       "event": "Zkouška",
       "pickup": "Luky v 16:30",
       "note": ""
+    },
+    {
+      "date": "2026-09-03",
+      "date_display": "03.09.2026",
+      "day": "Čtvrtek",
+      "event": "Studio (?)",
+      "pickup": "",
+      "note": "Dying Tonight. Čekáma ne potvrzení termínu Kubou."
     },
     {
       "date": "2026-09-19",
@@ -67,15 +75,6 @@
     }
   ],
   "tasks": [
-    {
-      "task": "Nasdílet SMR CZ/SK playlisty na story",
-      "assignee": "Filip",
-      "created": "2026-07-29",
-      "created_display": "29.07.2026",
-      "deadline": "2026-07-30",
-      "deadline_display": "30.07.2026",
-      "note": ""
-    },
     {
       "task": "Vyexportovat a poslat linky The Drain",
       "assignee": "Pavel",
