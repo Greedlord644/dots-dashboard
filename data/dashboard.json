@@ -1,5 +1,5 @@
 {
-  "updated_at": "30.07.2026 07:55",
+  "updated_at": "30.07.2026 11:05",
   "events": [
     {
       "date": "2026-08-03",
@@ -83,16 +83,16 @@
       "created_display": "29.07.2026",
       "deadline": "2026-08-02",
       "deadline_display": "02.08.2026",
-      "note": "Nutné vyjádření Filipa k instrumentálu od Pavla"
+      "note": ""
     },
     {
-      "task": "Dát zpětnou vazbu k instrumentálu The Drain od Pavla",
-      "assignee": "Filip",
-      "created": "2026-07-29",
-      "created_display": "29.07.2026",
-      "deadline": "",
-      "deadline_display": "",
-      "note": ""
+      "task": "Poslat Truth or Lie a The Drain Kubovi pro feedback",
+      "assignee": "Danylo",
+      "created": "2026-07-30",
+      "created_display": "30.07.2026",
+      "deadline": "2026-08-02",
+      "deadline_display": "02.08.2026",
+      "note": "Podmíněno zasláním podkladů od Pavla"
     }
   ]
 }
