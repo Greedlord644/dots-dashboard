@@ -1,5 +1,5 @@
 {
-  "updated_at": "30.07.2026 18:30",
+  "updated_at": "03.08.2026 09:20",
   "events": [
     {
       "date": "2026-08-03",
@@ -89,8 +89,8 @@
       "assignee": "Danylo",
       "created": "2026-07-30",
       "created_display": "30.07.2026",
-      "deadline": "2026-08-02",
-      "deadline_display": "02.08.2026",
+      "deadline": "2026-08-16",
+      "deadline_display": "16.08.2026",
       "note": "Podmíněno zasláním podkladů od Pavla"
     },
     {
@@ -98,8 +98,8 @@
       "assignee": "Danylo",
       "created": "2026-07-30",
       "created_display": "30.07.2026",
-      "deadline": "2026-08-09",
-      "deadline_display": "09.08.2026",
+      "deadline": "2026-08-16",
+      "deadline_display": "16.08.2026",
       "note": ""
     }
   ]
