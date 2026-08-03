@@ -1,5 +1,5 @@
 {
-  "updated_at": "03.08.2026 09:20",
+  "updated_at": "03.08.2026 13:20",
   "events": [
     {
       "date": "2026-08-03",
@@ -37,9 +37,9 @@
       "date": "2026-09-03",
       "date_display": "03.09.2026",
       "day": "Čtvrtek",
-      "event": "Studio (?)",
+      "event": "Studio",
       "pickup": "",
-      "note": "Dying Tonight. Čekáma ne potvrzení termínu Kubou."
+      "note": "Dying Tonight"
     },
     {
       "date": "2026-09-19",
