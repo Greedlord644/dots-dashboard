@@ -1,5 +1,5 @@
 {
-  "updated_at": "07.08.2026 12:50",
+  "updated_at": "07.08.2026 13:30",
   "events": [
     {
       "date": "2026-08-03",
@@ -74,15 +74,5 @@
       "note": "Koncert v Praze (Chapeau Rouge) s Dead Phoenix"
     }
   ],
-  "tasks": [
-    {
-      "task": "Poslat Truth or Lie a The Drain Kubovi pro feedback",
-      "assignee": "Danylo",
-      "created": "2026-07-30",
-      "created_display": "30.07.2026",
-      "deadline": "2026-08-16",
-      "deadline_display": "16.08.2026",
-      "note": ""
-    }
-  ]
+  "tasks": []
 }
