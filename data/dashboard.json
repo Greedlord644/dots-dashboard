@@ -1,21 +1,13 @@
 {
-  "updated_at": "07.08.2026 13:30",
+  "updated_at": "11.08.2026 14:40",
   "events": [
-    {
-      "date": "2026-08-03",
-      "date_display": "03.08.2026",
-      "day": "Pondělí",
-      "event": "Zkouška",
-      "pickup": "Ne, jet po vlastní ose",
-      "note": ""
-    },
     {
       "date": "2026-08-12",
       "date_display": "12.08.2026",
       "day": "Středa",
       "event": "Zkouška",
       "pickup": "Luky v 16:30",
-      "note": ""
+      "note": "Instrumentální"
     },
     {
       "date": "2026-08-17",
