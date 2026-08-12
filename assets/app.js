@@ -5,7 +5,8 @@ const DATA_URL = "data/dashboard.json";
 const EVENT_TYPES = [
     { key: "zkouska", label: "Zkoušky", keywords: ["zkouška", "zkouska"] },
     { key: "studio", label: "Studio", keywords: ["studio"] },
-    { key: "koncert", label: "Koncerty", keywords: ["koncert"] }
+    { key: "koncert", label: "Koncerty", keywords: ["koncert"] },
+    { key: "other", label: "Ostatní", keywords: [] }
 ];
 
 const state = {
