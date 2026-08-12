@@ -1,5 +1,5 @@
 {
-  "updated_at": "11.08.2026 14:40",
+  "updated_at": "12.08.2026 12:01",
   "events": [
     {
       "date": "2026-08-12",
@@ -32,6 +32,14 @@
       "event": "Studio",
       "pickup": "",
       "note": "Dying Tonight"
+    },
+    {
+      "date": "2026-09-06",
+      "date_display": "06.09.2026",
+      "day": "Neděle",
+      "event": "Focení (?)",
+      "pickup": "",
+      "note": "Předběžně, uvidí se jak bude moct Pavel."
     },
     {
       "date": "2026-09-19",
