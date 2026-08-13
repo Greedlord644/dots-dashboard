@@ -318,9 +318,17 @@ function renderSchedules() {
         return;
     }
 
+    const today =
+        getStartOfToday();
+
     const events = state.data.events
         .map(normalizeEvent)
-        .filter((event) => event.date !== null)
+        .filter((event) => {
+            return (
+                event.date !== null &&
+                event.date.getTime() >= today.getTime()
+            );
+        })
         .sort((a, b) => {
             return a.date.getTime() - b.date.getTime();
         });
@@ -1139,6 +1147,18 @@ function formatTaskCount(count) {
 /* =========================================================
    DATUMY
 ========================================================= */
+
+function getStartOfToday() {
+    const now =
+        new Date();
+
+    return createLocalDate(
+        now.getFullYear(),
+        now.getMonth() + 1,
+        now.getDate()
+    );
+}
+
 
 function parseDate(value) {
     if (!value) {
