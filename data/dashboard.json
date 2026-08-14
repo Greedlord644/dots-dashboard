@@ -1,5 +1,5 @@
 {
-  "updated_at": "13.08.2026 14:31",
+  "updated_at": "14.08.2026 14:25",
   "events": [
     {
       "date": "2026-08-17",
@@ -48,6 +48,14 @@
       "event": "Koncert",
       "pickup": "",
       "note": "SUNFEST Praha (Chapeau Rouge)"
+    },
+    {
+      "date": "2027-01-29",
+      "date_display": "29.01.2027",
+      "day": "Pátek",
+      "event": "Koncert (?)",
+      "pickup": "",
+      "note": "Možný výměnný koncert s Odyss3a v Brně (Melodka)"
     },
     {
       "date": "2027-11-11",
