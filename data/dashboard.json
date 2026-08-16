@@ -1,5 +1,5 @@
 {
-  "updated_at": "16.08.2026 11:05",
+  "updated_at": "16.08.2026 11:15",
   "events": [
     {
       "date": "2026-08-17",
@@ -100,7 +100,7 @@
       "created_display": "",
       "deadline": "",
       "deadline_display": "",
-      "note": ""
+      "note": "Udělat verzi kde vokály budou stejně jako v demu (pod nový instrumentál)"
     }
   ]
 }
