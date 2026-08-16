@@ -1,5 +1,5 @@
 {
-  "updated_at": "14.08.2026 14:25",
+  "updated_at": "16.08.2026 11:05",
   "events": [
     {
       "date": "2026-08-17",
@@ -74,5 +74,33 @@
       "note": "Koncert v Praze (Chapeau Rouge) s Dead Phoenix"
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "task": "Podivat se na kytaru na konci 1. a 2 refrenu The Drain",
+      "assignee": "Pavel",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": "Utnout kytaru na 1. době, nechat doznít než začne sloka"
+    },
+    {
+      "task": "Nahrát novou sloku The Drain",
+      "assignee": "Filip",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": ""
+    },
+    {
+      "task": "Nahrát vokály The Way You Are",
+      "assignee": "Filip",
+      "created": "",
+      "created_display": "",
+      "deadline": "",
+      "deadline_display": "",
+      "note": ""
+    }
+  ]
 }
