@@ -1,13 +1,13 @@
 {
-  "updated_at": "24.08.2026 09:01",
+  "updated_at": "24.08.2026 09:10",
   "events": [
     {
-      "date": "2026-08-24",
-      "date_display": "24.08.2026",
+      "date": "2026-09-03",
+      "date_display": "03.09.2026",
       "day": "Pondělí",
       "event": "Zkouška",
-      "pickup": "Luky v 16:30",
-      "note": ""
+      "pickup": "Pravděpodobně ne",
+      "note": "Danylo bude končit později, pokusí se do půl 6 být."
     },
     {
       "date": "2026-09-19",
@@ -24,14 +24,6 @@
       "event": "Koncert",
       "pickup": "",
       "note": "SUNFEST Praha (Chapeau Rouge)"
-    },
-    {
-      "date": "2027-01-29",
-      "date_display": "29.01.2027",
-      "day": "Pátek",
-      "event": "Koncert (?)",
-      "pickup": "",
-      "note": "Možný výměnný koncert s Odyss3a v Brně (Melodka)"
     },
     {
       "date": "2027-11-11",
