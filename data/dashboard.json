@@ -1,5 +1,5 @@
 {
-  "updated_at": "24.08.2026 08:55",
+  "updated_at": "24.08.2026 09:01",
   "events": [
     {
       "date": "2026-08-24",
@@ -8,14 +8,6 @@
       "event": "Zkouška",
       "pickup": "Luky v 16:30",
       "note": ""
-    },
-    {
-      "date": "2026-09-03",
-      "date_display": "03.09.2026",
-      "day": "Čtvrtek",
-      "event": "Studio",
-      "pickup": "",
-      "note": "Dying Tonight"
     },
     {
       "date": "2026-09-19",
