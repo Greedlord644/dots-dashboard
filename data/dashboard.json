@@ -1,5 +1,5 @@
 {
-  "updated_at": "24.08.2026 09:10",
+  "updated_at": "24.08.2026 11:10",
   "events": [
     {
       "date": "2026-09-03",
@@ -8,6 +8,14 @@
       "event": "Zkouška",
       "pickup": "Pravděpodobně ne",
       "note": "Danylo bude končit později, pokusí se do půl 6 být."
+    },
+    {
+      "date": "2026-09-05",
+      "date_display": "05.09.2026",
+      "day": "Sobota",
+      "event": "Zkouška",
+      "pickup": "",
+      "note": "V 12h, vyřešit oběd"
     },
     {
       "date": "2026-09-19",
