@@ -1,5 +1,5 @@
 {
-  "updated_at": "24.08.2026 11:10",
+  "updated_at": "01.09.2026 11:50",
   "events": [
     {
       "date": "2026-09-03",
@@ -14,8 +14,24 @@
       "date_display": "05.09.2026",
       "day": "Sobota",
       "event": "Zkouška",
-      "pickup": "",
+      "pickup": "?",
       "note": "V 12h, vyřešit oběd"
+    },
+    {
+      "date": "2026-09-07",
+      "date_display": "07.09.2026",
+      "day": "Pondělí",
+      "event": "Zkouška",
+      "pickup": "?",
+      "note": ""
+    },
+    {
+      "date": "2026-09-09",
+      "date_display": "09.09.2026",
+      "day": "Středa",
+      "event": "Zkouška",
+      "pickup": "?",
+      "note": ""
     },
     {
       "date": "2026-09-19",
