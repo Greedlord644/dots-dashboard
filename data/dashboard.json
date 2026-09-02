@@ -1,5 +1,5 @@
 {
-  "updated_at": "02.09.2026 12:20",
+  "updated_at": "02.09.2026 16:01",
   "events": [
     {
       "date": "2026-09-03",
@@ -24,6 +24,14 @@
       "event": "Zkouška",
       "pickup": "?",
       "note": "Bez Pavla"
+    },
+    {
+      "date": "2026-09-15",
+      "date_display": "15.09.2026",
+      "day": "Úterý",
+      "event": "Zkouška",
+      "pickup": "?",
+      "note": "Bez Filipa"
     },
     {
       "date": "2026-09-19",
