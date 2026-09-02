@@ -1,5 +1,5 @@
 {
-  "updated_at": "01.09.2026 13:55",
+  "updated_at": "02.09.2026 12:15",
   "events": [
     {
       "date": "2026-09-03",
@@ -8,14 +8,6 @@
       "event": "Zkouška",
       "pickup": "Pravděpodobně ne",
       "note": ""
-    },
-    {
-      "date": "2026-09-05",
-      "date_display": "05.09.2026",
-      "day": "Sobota",
-      "event": "Zkouška",
-      "pickup": "?",
-      "note": "V 12h, vyřešit oběd"
     },
     {
       "date": "2026-09-07",
