@@ -1,5 +1,5 @@
 {
-  "updated_at": "02.09.2026 12:15",
+  "updated_at": "02.09.2026 12:20",
   "events": [
     {
       "date": "2026-09-03",
@@ -7,7 +7,7 @@
       "day": "Čtvrtek",
       "event": "Zkouška",
       "pickup": "Pravděpodobně ne",
-      "note": ""
+      "note": "V plném počtu"
     },
     {
       "date": "2026-09-07",
@@ -15,7 +15,7 @@
       "day": "Pondělí",
       "event": "Zkouška",
       "pickup": "?",
-      "note": ""
+      "note": "V plném počtu"
     },
     {
       "date": "2026-09-09",
@@ -23,7 +23,7 @@
       "day": "Středa",
       "event": "Zkouška",
       "pickup": "?",
-      "note": ""
+      "note": "Bez Pavla"
     },
     {
       "date": "2026-09-19",
