@@ -1,38 +1,6 @@
 {
-  "updated_at": "02.09.2026 16:01",
+  "updated_at": "16.09.2026 16:25",
   "events": [
-    {
-      "date": "2026-09-03",
-      "date_display": "03.09.2026",
-      "day": "Čtvrtek",
-      "event": "Zkouška",
-      "pickup": "Pravděpodobně ne",
-      "note": "V plném počtu"
-    },
-    {
-      "date": "2026-09-07",
-      "date_display": "07.09.2026",
-      "day": "Pondělí",
-      "event": "Zkouška",
-      "pickup": "?",
-      "note": "V plném počtu"
-    },
-    {
-      "date": "2026-09-09",
-      "date_display": "09.09.2026",
-      "day": "Středa",
-      "event": "Zkouška",
-      "pickup": "?",
-      "note": "Bez Pavla"
-    },
-    {
-      "date": "2026-09-15",
-      "date_display": "15.09.2026",
-      "day": "Úterý",
-      "event": "Zkouška",
-      "pickup": "?",
-      "note": "Bez Filipa"
-    },
     {
       "date": "2026-09-19",
       "date_display": "19.09.2026",
@@ -40,6 +8,22 @@
       "event": "Koncert",
       "pickup": "",
       "note": "SUNFEST Brno (Kabinet MÚZ)"
+    },
+    {
+      "date": "2026-09-21",
+      "date_display": "21.09.2026",
+      "day": "Pondělí",
+      "event": "Zkouška",
+      "pickup": "?",
+      "note": "V plném počtu"
+    },
+    {
+      "date": "2026-09-29",
+      "date_display": "29.09.2026",
+      "day": "Úterý",
+      "event": "Zkouška",
+      "pickup": "?",
+      "note": "V plném počtu"
     },
     {
       "date": "2026-10-10",
