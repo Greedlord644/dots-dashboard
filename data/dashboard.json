@@ -1,5 +1,5 @@
 {
-  "updated_at": "21.09.2026 15:50",
+  "updated_at": "21.09.2026 16:40",
   "events": [
     {
       "date": "2026-09-29",
@@ -7,7 +7,15 @@
       "day": "Úterý",
       "event": "Zkouška",
       "pickup": "?",
-      "note": "V plném počtu"
+      "note": ""
+    },
+    {
+      "date": "2026-10-06",
+      "date_display": "06.10.2026",
+      "day": "Úterý",
+      "event": "Zkouška",
+      "pickup": "?",
+      "note": "U Pavla otázka jak to vyjde s práci"
     },
     {
       "date": "2026-10-10",
