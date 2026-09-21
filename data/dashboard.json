@@ -1,22 +1,6 @@
 {
-  "updated_at": "16.09.2026 16:25",
+  "updated_at": "21.09.2026 15:50",
   "events": [
-    {
-      "date": "2026-09-19",
-      "date_display": "19.09.2026",
-      "day": "Sobota",
-      "event": "Koncert",
-      "pickup": "",
-      "note": "SUNFEST Brno (Kabinet MÚZ)"
-    },
-    {
-      "date": "2026-09-21",
-      "date_display": "21.09.2026",
-      "day": "Pondělí",
-      "event": "Zkouška",
-      "pickup": "?",
-      "note": "V plném počtu"
-    },
     {
       "date": "2026-09-29",
       "date_display": "29.09.2026",
